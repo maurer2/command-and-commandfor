@@ -1,0 +1,28 @@
+@scope (.example) {
+  :scope {
+  }
+
+  button {
+    anchor-name: --menu-button;
+  }
+
+  ul {
+    position-anchor: --menu-button;
+    position-area: x-end;
+
+    margin: unset;
+    padding-block: var(--spacing-small);
+    padding-inline: 0;
+    left: var(--spacing-small);
+    gap: var(--spacing-small);
+    overflow: clip;
+
+    &:popover-open {
+      display: grid;
+    }
+  }
+
+  li {
+    padding-inline: var(--spacing-small);
+  }
+}

@@ -1,11 +1,11 @@
 :root {
-  --primary-colour: oklch(0 0 0);
-  --secondary-colour: oklch(1 0 0);
+  --primary-colour: oklch(0.22 0.01 0);
+  --secondary-colour: oklch(0.9 0.01 106.43);
   --tertiary-colour: oklch(0.8054 0.1677 64.59);
 
-  --spacing-small: 2rem;
-  --spacing-medium: 3rem;
-  --spacing-large: 5rem;
+  --spacing-small: 0.75rem;
+  --spacing-medium: 1.5rem;
+  --spacing-large: 3rem;
 }
 
 body {
