@@ -1,0 +1,12 @@
+@scope (.header) {
+  :scope {
+    display: flow-root; /*  contain child margins */
+    padding-inline: var(--spacing-medium);
+    color: var(--tertiary-colour);
+    border-block-end: 1px solid var(--secondary-colour);
+  }
+
+  h1 {
+    text-align: center;
+  }
+}

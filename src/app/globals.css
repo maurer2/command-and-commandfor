@@ -1,0 +1,30 @@
+:root {
+  --primary-colour: oklch(0 0 0);
+  --secondary-colour: oklch(1 0 0);
+  --tertiary-colour: oklch(0.8054 0.1677 64.59);
+
+  --spacing-small: 2rem;
+  --spacing-medium: 3rem;
+  --spacing-large: 5rem;
+}
+
+body {
+  color: var(--secondary-colour);
+  background: var(--primary-colour);
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  display: flow-root; /*  contain child margins */
+  inline-size: min(100ch, 100%);
+  margin-inline: auto;
+  padding-inline: var(--spacing-medium);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
