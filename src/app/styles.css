@@ -1,5 +1,6 @@
 @scope (.example) {
   :scope {
+    margin-block-end: var(--spacing-medium);
   }
 
   button {
@@ -16,6 +17,10 @@
     left: var(--spacing-small);
     gap: var(--spacing-small);
     overflow: clip;
+
+    /* &::backdrop {
+      filter: blur(5px);
+    } */
 
     &:popover-open {
       display: grid;

@@ -5,6 +5,7 @@ import "modern-normalize";
 
 import "./globals.css";
 import Masthead from "@/components/MastHead";
+import Bouncer from "@/components/Bouncer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Masthead />
         {children}
+        <Bouncer />
       </body>
     </html>
   );
