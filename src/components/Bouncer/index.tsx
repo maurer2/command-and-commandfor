@@ -5,21 +5,23 @@ import React, { useRef, useEffect } from "react";
 import "./styles.css";
 
 function Bouncer() {
-  const testButton = useRef<HTMLButtonElement>(null);
   const dialogElement = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (testButton.current === null || !("command" in testButton.current)) {
-      dialogElement?.current?.showModal();
+    if (
+      !("command" in HTMLButtonElement.prototype) ||
+      // https://stackoverflow.com/questions/78797961/detecting-css-scope-support-with-javascript
+      typeof CSSScopeRule === "undefined"
+    ) {
+      dialogElement.current?.showModal();
     }
   }, []);
 
   return (
     <div className="bouncer">
-      <button ref={testButton} disabled hidden>
-        Test button that should not be accessible
-      </button>
-      <dialog ref={dialogElement}>Feature not supported.</dialog>
+      <dialog ref={dialogElement}>
+        "command" and/or "@scope" not supported.
+      </dialog>
     </div>
   );
 }
