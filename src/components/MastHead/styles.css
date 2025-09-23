@@ -2,11 +2,12 @@
   :scope {
     display: flow-root; /*  contain child margins */
     padding-inline: var(--spacing-medium);
-    color: var(--tertiary-colour);
-    border-block-end: 1px solid var(--secondary-colour);
   }
 
   h1 {
+    margin-block: var(--spacing-medium);
     text-align: center;
+    text-wrap: pretty;
+    color: var(--tertiary-colour);
   }
 }

@@ -1,4 +1,4 @@
-@scope (.home-page) {
+@scope (.modal-page) {
   :scope {
     margin-block-end: var(--spacing-medium);
   }

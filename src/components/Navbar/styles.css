@@ -1,0 +1,65 @@
+@scope (.navbar) {
+  :scope {
+    --border-colour: var(--secondary-colour);
+
+    display: flex; /*  contain child margins */
+    margin-inline: calc(-1 * var(--spacing-medium));
+    flex-direction: column;
+    border-block: 1px solid var(--border-colour);
+
+    @container body (width > 24rem) {
+      padding-inline: var(--spacing-medium);
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  .link {
+    padding-block: var(--spacing-small);
+    padding-inline: var(--spacing-medium);
+    flex: none;
+    align-content: center;
+    overflow-wrap: break-word;
+
+    /* a link after a link which itself is directly followed by a link -> everything between first and last link excluding first and last */
+    /* & + :has(+ .link) {
+      border-block-start: 1px solid var(--border-colour);
+    } */
+
+    & + .link {
+      border-block-start: 1px solid var(--border-colour);
+    }
+
+    @container body (width > 24rem) {
+      flex-basis: fit-content;
+      max-inline-size: 20rem;
+      text-align: center;
+
+      & {
+        border-inline-start: 1px solid var(--border-colour);
+      }
+
+      & + .link {
+        border-block-start: none;
+      }
+
+      /* a link that is not followed by another link */
+      &:not(:has(~ .link)) {
+        border-inline-end: 1px solid var(--border-colour);
+      }
+    }
+
+    &:where(:hover, :focus-visible, .is-active) {
+      background: var(--tertiary-colour);
+      color: var(--primary-colour);
+    }
+
+    &:where(:hover, :focus-visible) {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-decoration-style: solid;
+      text-decoration-color: var(--border-colour);
+      text-underline-offset: 4px;
+    }
+  }
+}

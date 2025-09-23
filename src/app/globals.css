@@ -9,12 +9,16 @@
 }
 
 body {
+  min-height: 100dvh;
   color: var(--secondary-colour);
   background: var(--primary-colour);
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  container-name: body;
+  container-type: inline-size;
 }
 
 main {
