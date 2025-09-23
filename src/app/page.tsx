@@ -11,8 +11,8 @@ export default function Home() {
         <button
           // @ts-expect-error too-new
           commandfor="menu"
-          command="show-popover"
-          aria-label="Show menu"
+          command="toggle-popover"
+          aria-label="Toggle menu"
           aria-haspopup="menu"
         >
           <Menu />
