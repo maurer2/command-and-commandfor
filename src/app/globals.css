@@ -6,6 +6,11 @@
   --spacing-small: 0.75rem;
   --spacing-medium: 1.5rem;
   --spacing-large: 3rem;
+
+  --transition-duration: 0.5s;
+  @media (prefers-reduced-motion: reduce) {
+    --transition-duration: 0s;
+  }
 }
 
 body {

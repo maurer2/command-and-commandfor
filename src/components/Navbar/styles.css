@@ -15,13 +15,13 @@
   }
 
   .link {
-    padding-block: var(--spacing-small);
+    block-size: calc-size(fit-content, size * 2);
     padding-inline: var(--spacing-medium);
     flex: none;
     align-content: center;
     overflow-wrap: break-word;
 
-    /* a link after a link which itself is directly followed by a link -> everything between first and last link excluding first and last */
+    /* a link after a link which itself is directly followed by a link */
     /* & + :has(+ .link) {
       border-block-start: 1px solid var(--border-colour);
     } */
@@ -31,9 +31,10 @@
     }
 
     @container body (width > 24rem) {
-      flex-basis: fit-content;
-      max-inline-size: 20rem;
+      inline-size: calc-size(fit-content, size * 2);
+      flex-shrink: 1;
       text-align: center;
+      transition: block-size ease var(--transition-duration);
 
       & {
         border-inline-start: 1px solid var(--border-colour);
@@ -46,6 +47,10 @@
       /* a link that is not followed by another link */
       &:not(:has(~ .link)) {
         border-inline-end: 1px solid var(--border-colour);
+      }
+
+      :scope:has(&:hover, &:focus-visible) & {
+        block-size: calc-size(fit-content, size * 3);
       }
     }
 
