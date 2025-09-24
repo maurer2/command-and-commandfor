@@ -11,7 +11,8 @@ function Bouncer() {
     if (
       !("command" in HTMLButtonElement.prototype) ||
       // https://stackoverflow.com/questions/78797961/detecting-css-scope-support-with-javascript
-      typeof CSSScopeRule === "undefined"
+      typeof CSSScopeRule === "undefined" ||
+      !CSS.supports("block-size: calc-size(auto, size * 2)")
     ) {
       dialogElement.current?.showModal();
     }
@@ -20,7 +21,8 @@ function Bouncer() {
   return (
     <div className="bouncer">
       <dialog ref={dialogElement}>
-        "command" and/or "@scope" not supported.
+        Support for &quot;command&quot;, &quot;@scope&quot;, or
+        &quot;calc-size&quot; missing.
       </dialog>
     </div>
   );
