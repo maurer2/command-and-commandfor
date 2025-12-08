@@ -12,6 +12,7 @@ const routes: { path: Route; label: string }[] = [
   { path: "/", label: "Home" },
   { path: "/popover", label: "Popover" },
   { path: "/modal", label: "Modal" },
+  { path: "/hover", label: "Hover" },
 ];
 
 function Navbar() {

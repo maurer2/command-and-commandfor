@@ -1,0 +1,36 @@
+@scope (.hover-page) {
+  :scope {
+    margin-block-end: var(--spacing-medium);
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  button {
+    anchor-name: --parent;
+
+    position: relative;
+  }
+
+  .interesting-stuff {
+    position-anchor: --parent;
+    position-area: center;
+
+    position: absolute;
+    inset-inline-start: calc(anchor(right) + 1rem);
+    padding: 1rem;
+  }
+
+  /* lightning css errors */
+  /* button::has-interest,
+  button:has-interest {
+    background: red;
+  } */
+
+  /* button {
+    &::has-interest {
+      background: red;
+    }
+  } */
+}
