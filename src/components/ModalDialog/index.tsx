@@ -9,7 +9,7 @@ function ModalDialog({ children, modalId, modalTrigger }: ModalDialogProps) {
   return (
     <>
       {modalTrigger}
-      <dialog id={modalId} closedby="any">
+      <dialog id={modalId} closedby="any" open={false}>
         <button
           type="button"
           // @ts-expect-error too-new
