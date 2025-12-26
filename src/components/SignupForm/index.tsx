@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, startTransition, useRef } from "react";
+import { useActionState, startTransition, type FormEvent } from "react";
 import { saveFormData } from "@/app/actions/actions";
 
 // type SaveFormDataState = Parameters<typeof saveFormData>[0];
@@ -18,14 +18,16 @@ function SignupForm() {
     }
   );
 
-  const handleFormAction = async (formData: FormData) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(event.currentTarget);
+
     startTransition(async () => {
       await triggerSaveFormData(formData);
     });
   };
 
   return (
-    <form action={handleFormAction}>
+    <form method="dialog" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Name</label>
         <input
