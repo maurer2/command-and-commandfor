@@ -4,16 +4,21 @@ import {
   createContext,
   useContext,
   useMemo,
-  use,
+  // use,
   type PropsWithChildren,
+  type RefObject,
 } from "react";
+import { Simplify } from "type-fest";
 
-type ModalDialogProviderProps = PropsWithChildren;
-
-type ModalDialogContextType = {
-  dialogRef: string | null;
+type ModalDialogProviderProps = PropsWithChildren & {
+  dialogRef: RefObject<HTMLDialogElement | null>;
   modalId: string;
 };
+
+type ModalDialogContextType = Simplify<{
+  dialogRef: ModalDialogProviderProps["dialogRef"];
+  modalId: ModalDialogProviderProps["modalId"];
+}>;
 
 const ModalDialogContext = createContext<ModalDialogContextType | null>(null);
 
@@ -21,16 +26,20 @@ export function useModalDialogContext() {
   const modalDialogContext = useContext(ModalDialogContext);
 
   if (!modalDialogContext) {
-    throw new Error("Please wrap ModalDialog in ModalDialogProvider");
+    throw new Error("Please add ModalDialogProvider");
   }
 
   return modalDialogContext;
 
-  // return use(ModalDialogContext)} // todo remove null like in old approach
+  // return use(ModalDialogContext)} // todo: remove null like in old approach
 }
 
-export function ModalDialogProvider({ children }: ModalDialogProviderProps) {
-  const value = useMemo(() => ({ dialogRef: null, modalId: "modal" }), []);
+export function ModalDialogProvider({
+  modalId,
+  dialogRef,
+  children,
+}: ModalDialogProviderProps) {
+  const value = useMemo(() => ({ dialogRef, modalId }), [modalId, dialogRef]);
 
   return (
     <ModalDialogContext.Provider value={value}>

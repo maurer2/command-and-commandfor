@@ -19,6 +19,7 @@ function SignupForm() {
   );
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
     startTransition(async () => {

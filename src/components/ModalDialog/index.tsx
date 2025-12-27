@@ -1,27 +1,23 @@
-import type { PropsWithChildren, ReactNode } from "react";
+"use client";
+
+import { useRef, type PropsWithChildren, type ReactNode } from "react";
+
+import { ModalDialogProvider } from "./components/ModalDialogProvider";
+import { ModalDialogElement } from "./components/ModalDialogElement";
 
 type ModalDialogProps = PropsWithChildren & {
-  modalId: string; // can't use useId hook in server components
+  modalId: string;
   modalTrigger: ReactNode;
 };
 
 function ModalDialog({ children, modalId, modalTrigger }: ModalDialogProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
   return (
-    <>
+    <ModalDialogProvider modalId={modalId} dialogRef={dialogRef}>
       {modalTrigger}
-      <dialog id={modalId} closedby="any" open={false}>
-        <button
-          type="button"
-          // @ts-expect-error too-new
-          commandfor={modalId}
-          command="close"
-          className="close-button"
-        >
-          Close
-        </button>
-        <div className="content">{children}</div>
-      </dialog>
-    </>
+      <ModalDialogElement>{children}</ModalDialogElement>
+    </ModalDialogProvider>
   );
 }
 
