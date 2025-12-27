@@ -5,7 +5,12 @@ import { saveFormData } from "@/app/actions/actions";
 
 // type SaveFormDataState = Parameters<typeof saveFormData>[0];
 
-function SignupForm() {
+type SignupFormProps = {
+  onSubmit?: () => void;
+  onCancel?: () => void;
+};
+
+function SignupForm({ onSubmit, onCancel }: SignupFormProps) {
   const [formState, triggerSaveFormData, isPending] = useActionState(
     saveFormData,
     {
@@ -25,6 +30,9 @@ function SignupForm() {
     startTransition(async () => {
       await triggerSaveFormData(formData);
     });
+
+    onSubmit?.();
+    onCancel?.();
   };
 
   return (

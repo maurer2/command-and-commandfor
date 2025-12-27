@@ -24,9 +24,9 @@ export default function ModalPage() {
               Open form in modal
             </button>
           }
-        >
-          <SignupForm />
-        </ModalDialog>
+          // can't be <SignupForm />
+          ChildComponent={SignupForm}
+        />
       </div>
     </main>
   );
