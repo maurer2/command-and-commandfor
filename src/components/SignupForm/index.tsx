@@ -8,6 +8,7 @@ import { saveFormData } from "@/app/actions/actions";
 type SignupFormProps = {
   onSubmit?: () => void;
   onCancel?: () => void;
+  canDoStuff?: boolean; // test extra prop
 };
 
 function SignupForm({ onSubmit, onCancel }: SignupFormProps) {

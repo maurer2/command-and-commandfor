@@ -10,10 +10,10 @@ import {
 } from "react";
 import { Simplify } from "type-fest";
 
-type ModalDialogProviderProps = PropsWithChildren & {
+type ModalDialogProviderProps = PropsWithChildren<{
   dialogRef: RefObject<HTMLDialogElement | null>;
   modalId: string;
-};
+}>;
 
 type ModalDialogContextType = Simplify<{
   dialogRef: ModalDialogProviderProps["dialogRef"];

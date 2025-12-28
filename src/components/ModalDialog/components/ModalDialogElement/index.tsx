@@ -1,18 +1,25 @@
 "use client";
 
-import { useCallback, useMemo, type ComponentType } from "react";
+import {
+  useCallback,
+  type ReactElement,
+  type ComponentPropsWithRef,
+} from "react";
 
 import { useModalDialogContext } from "../ModalDialogProvider";
+import { ModalDialogAdapter } from "../ModalDialogAdapter";
 
-type ChildElementExposedProps = {
-  onSubmit?: () => void;
-  onCancel?: () => void;
-};
-type ModalDialogProps = {
-  ChildComponent: ComponentType<ChildElementExposedProps>;
+type ModalDialogAdapterProps = ComponentPropsWithRef<typeof ModalDialogAdapter>;
+
+// can't use PropsWithChildren as it is too generic
+// children must have at least onSubmit and onCancel props but could have more
+type ModalDialogElementProps<T extends ModalDialogAdapterProps> = {
+  children: ReactElement<T>;
 };
 
-export function ModalDialogElement({ ChildComponent }: ModalDialogProps) {
+export function ModalDialogElement<T extends ModalDialogAdapterProps>({
+  children,
+}: ModalDialogElementProps<T>) {
   const { dialogRef, modalId } = useModalDialogContext();
 
   const handleClose = useCallback(() => {
@@ -27,15 +34,6 @@ export function ModalDialogElement({ ChildComponent }: ModalDialogProps) {
     console.log("show");
   }, []);
 
-  // adapter between parent methods and methods exposed by child components
-  const childProps: ChildElementExposedProps = useMemo(
-    () => ({
-      onSubmit: handleClose,
-      onCancel: handleClose,
-    }),
-    [handleClose]
-  );
-
   return (
     <dialog id={modalId} closedby="any" open={false}>
       <button
@@ -48,7 +46,9 @@ export function ModalDialogElement({ ChildComponent }: ModalDialogProps) {
         Close
       </button>
       <div className="content">
-        <ChildComponent {...childProps} />
+        <ModalDialogAdapter onSubmit={handleClose}>
+          {children}
+        </ModalDialogAdapter>
       </div>
     </dialog>
   );

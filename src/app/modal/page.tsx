@@ -1,4 +1,4 @@
-import ModalDialog, { ModalDialogWrapper } from "@/components/ModalDialog";
+import ModalDialog, { ModalDialogNextHelper } from "@/components/ModalDialog";
 import SignupForm from "@/components/SignupForm";
 
 import "./styles.css";
@@ -11,8 +11,8 @@ export default function ModalPage() {
       <h2>Modal</h2>
 
       <div className="example">
-        <ModalDialogWrapper>
-          <ModalDialog.Root modalId={modalId} ChildComponent={SignupForm}>
+        <ModalDialogNextHelper>
+          <ModalDialog.Root modalId={modalId}>
             <ModalDialog.Trigger>
               <button
                 type="button"
@@ -24,8 +24,11 @@ export default function ModalPage() {
                 Open form in modal
               </button>
             </ModalDialog.Trigger>
+            <ModalDialog.Element>
+              <SignupForm />
+            </ModalDialog.Element>
           </ModalDialog.Root>
-        </ModalDialogWrapper>
+        </ModalDialogNextHelper>
       </div>
     </main>
   );

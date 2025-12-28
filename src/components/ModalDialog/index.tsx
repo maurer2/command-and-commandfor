@@ -3,15 +3,15 @@ import type { PropsWithChildren } from "react";
 import { ModalDialogRoot } from "./components/ModalDialogRoot";
 import { ModalDialogElement } from "./components/ModalDialogElement";
 import { ModalDialogTrigger } from "./components/ModalDialogTrigger";
+import { ModalDialogAdapter } from "./components/ModalDialogAdapter";
 
 type ModalDialogProps = PropsWithChildren;
 
-// RSC don't like importing client compound components in server components
+// Nextjs/RSC doesn't like importing compound components in server components directly
 // workaround for https://github.com/vercel/next.js/issues/75192#issuecomment-2629016605
-// todo: https://ivicabatinic.from.hr/posts/multipart-namespace-components-addressing-rsc-and-dot-notation-issues
 // https://github.com/vercel/next.js/issues/76000
-
-export function ModalDialogWrapper({ children }: ModalDialogProps) {
+// todo: https://ivicabatinic.from.hr/posts/multipart-namespace-components-addressing-rsc-and-dot-notation-issues
+export function ModalDialogNextHelper({ children }: ModalDialogProps) {
   return <>{children}</>;
 }
 
@@ -19,6 +19,7 @@ const ModalDialog = {
   Root: ModalDialogRoot,
   Element: ModalDialogElement,
   Trigger: ModalDialogTrigger,
+  Adapter: ModalDialogAdapter,
 };
 
 export default ModalDialog;
