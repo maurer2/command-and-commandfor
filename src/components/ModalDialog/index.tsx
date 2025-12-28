@@ -1,37 +1,30 @@
 "use client";
 
-import {
-  useRef,
-  type PropsWithChildren,
-  type ReactNode,
-  type ComponentType,
-} from "react";
+import { useRef, type ReactNode, type ComponentPropsWithoutRef } from "react";
 
 import { ModalDialogProvider } from "./components/ModalDialogProvider";
 import { ModalDialogElement } from "./components/ModalDialogElement";
 
-type ChildElementExposedProps = {
-  onSubmit?: () => void;
-  onCancel?: () => void;
-};
+type ModalDialogElementProps = ComponentPropsWithoutRef<
+  typeof ModalDialogElement
+>;
 
-type ModalDialogProps = PropsWithChildren & {
+type ModalDialogProps = {
   modalId: string;
-  modalTrigger: ReactNode;
-  ChildComponent: ComponentType<ChildElementExposedProps>;
+  ModalTrigger: ReactNode;
+  ChildComponent: ModalDialogElementProps["ChildComponent"];
 };
 
 function ModalDialog({
-  children,
   modalId,
-  modalTrigger,
+  ModalTrigger,
   ChildComponent,
 }: ModalDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
     <ModalDialogProvider modalId={modalId} dialogRef={dialogRef}>
-      {modalTrigger}
+      {ModalTrigger}
       <ModalDialogElement ChildComponent={ChildComponent} />
     </ModalDialogProvider>
   );

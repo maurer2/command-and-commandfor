@@ -1,28 +1,16 @@
 "use client";
 
-import {
-  useCallback,
-  useMemo,
-  type PropsWithChildren,
-  type ReactNode,
-  type ComponentType,
-} from "react";
+import { useCallback, useMemo, type ComponentType } from "react";
 
 import { useModalDialogContext } from "../ModalDialogProvider";
-
-type ModalDialogContextType = ReturnType<typeof useModalDialogContext>;
 
 type ChildElementExposedProps = {
   onSubmit?: () => void;
   onCancel?: () => void;
 };
-
 type ModalDialogProps = {
   ChildComponent: ComponentType<ChildElementExposedProps>;
-}; // PropsWithChildren; //  {
-// render props
-// children: (value: ModalDialogContextType) => ReactNode;
-// };
+};
 
 export function ModalDialogElement({ ChildComponent }: ModalDialogProps) {
   const { dialogRef, modalId } = useModalDialogContext();
@@ -59,7 +47,6 @@ export function ModalDialogElement({ ChildComponent }: ModalDialogProps) {
       >
         Close
       </button>
-      {/* <div className="content">{children({ dialogRef, modalId })}</div> */}
       <div className="content">
         <ChildComponent {...childProps} />
       </div>

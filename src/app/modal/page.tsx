@@ -13,7 +13,7 @@ export default function ModalPage() {
       <div className="example">
         <ModalDialog
           modalId={modalId}
-          modalTrigger={
+          ModalTrigger={
             <button
               type="button"
               aria-haspopup="modal"
