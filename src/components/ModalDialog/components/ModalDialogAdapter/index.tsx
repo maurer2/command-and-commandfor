@@ -1,4 +1,4 @@
-import { useMemo, cloneElement, type ReactElement } from "react";
+import { cloneElement, type ReactElement } from "react";
 
 type ChildElementProps = {
   onSubmit?: () => void;
@@ -6,10 +6,11 @@ type ChildElementProps = {
 };
 
 // allow any props but make sure onSubmit and onCancel are included
-type ModalDialogAdapterProps<T extends ChildElementProps> =
-  ChildElementProps & {
-    children?: ReactElement<T>;
-  };
+type ModalDialogAdapterProps<T extends ChildElementProps> = {
+  onSubmit?: () => void;
+  onCancel?: () => void;
+  children?: ReactElement<T>;
+};
 
 // allow any props but make sure onSubmit and onCancel are included
 export function ModalDialogAdapter<T extends ChildElementProps>({
@@ -17,10 +18,10 @@ export function ModalDialogAdapter<T extends ChildElementProps>({
   onCancel,
   children,
 }: ModalDialogAdapterProps<T>) {
-  const childElementProps: Partial<T> = useMemo(
-    () => ({ onSubmit, onCancel } as Partial<T>),
-    [onSubmit, onCancel]
-  );
+  const childElementProps = {
+    onSubmit: onSubmit,
+    onCancel: onCancel,
+  } as Partial<T>;
 
   return children ? cloneElement(children, childElementProps) : null;
 }

@@ -3,7 +3,6 @@
 import {
   createContext,
   useContext,
-  useMemo,
   // use,
   type PropsWithChildren,
   type RefObject,
@@ -39,7 +38,7 @@ export function ModalDialogProvider({
   dialogRef,
   children,
 }: ModalDialogProviderProps) {
-  const value = useMemo(() => ({ dialogRef, modalId }), [modalId, dialogRef]);
+  const value = { dialogRef, modalId };
 
   return (
     <ModalDialogContext.Provider value={value}>

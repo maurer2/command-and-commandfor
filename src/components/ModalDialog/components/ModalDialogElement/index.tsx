@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  type ReactElement,
-  type ComponentPropsWithRef,
-} from "react";
+import { type ReactElement, type ComponentPropsWithRef } from "react";
 
 import { useModalDialogContext } from "../ModalDialogProvider";
 import { ModalDialogAdapter } from "../ModalDialogAdapter";
@@ -22,17 +18,17 @@ export function ModalDialogElement<T extends ModalDialogAdapterProps>({
 }: ModalDialogElementProps<T>) {
   const { dialogRef, modalId } = useModalDialogContext();
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     dialogRef.current?.close();
 
     console.log("close");
-  }, []);
+  };
 
-  const handleShow = useCallback(() => {
+  const handleShow = () => {
     dialogRef.current?.showModal();
 
     console.log("show");
-  }, []);
+  };
 
   return (
     <dialog id={modalId} closedby="any" open={false}>
@@ -46,7 +42,7 @@ export function ModalDialogElement<T extends ModalDialogAdapterProps>({
         Close
       </button>
       <div className="content">
-        <ModalDialogAdapter onSubmit={handleClose}>
+        <ModalDialogAdapter onSubmit={handleClose} onCancel={handleShow}>
           {children}
         </ModalDialogAdapter>
       </div>
