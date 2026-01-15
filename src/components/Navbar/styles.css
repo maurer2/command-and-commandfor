@@ -54,7 +54,7 @@
       }
     }
 
-    &:where(:hover, :focus-visible, .is-active) {
+    &:where(:hover, :focus-visible, [aria-current="page"]) {
       background: var(--tertiary-colour);
       color: var(--primary-colour);
     }

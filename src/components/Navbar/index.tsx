@@ -15,20 +15,32 @@ const routes: { path: Route; label: string }[] = [
   { path: "/hover", label: "Hover" },
 ];
 
+// https://github.com/maurer2/trickle-down-features/blob/main/src/components/GoBackLink/GoBackLink.svelte
+// const pageURLPattern = new URLPattern({
+//   pathname: ":page{/*}?", // optional trailing slash and optional nested paths.
+// });
+// const isHome = pageURLPattern.test({ pathname: path.slice(1) })
+
 function Navbar() {
   const pathname = usePathname();
 
   return (
     <nav className="navbar">
-      {routes.map(({ path, label }) => (
-        <Link
-          href={path}
-          className={clsx("link", pathname === path && "is-active")}
-          key={path}
-        >
-          {label}
-        </Link>
-      ))}
+      {routes.map(({ path, label }) => {
+        const isActive =
+          path === "/" ? pathname === path : pathname.startsWith(path);
+
+        return (
+          <Link
+            href={path}
+            className={clsx("link")}
+            key={path}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }
