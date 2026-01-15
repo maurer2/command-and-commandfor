@@ -3,6 +3,8 @@
 import { useActionState, startTransition, type FormEvent } from "react";
 import { saveFormData } from "@/app/actions/actions";
 
+import "./styles.css";
+
 // type SaveFormDataState = Parameters<typeof saveFormData>[0];
 
 type SignupFormProps = {
@@ -37,8 +39,8 @@ function SignupForm({ onSubmit, onCancel }: SignupFormProps) {
   };
 
   return (
-    <form method="dialog" onSubmit={handleSubmit}>
-      <div>
+    <form method="dialog" onSubmit={handleSubmit} className="signup-form">
+      <div className="field-wrapper">
         <label htmlFor="name">Name</label>
         <input
           defaultValue={formState.fields.name.value}
@@ -51,14 +53,16 @@ function SignupForm({ onSubmit, onCancel }: SignupFormProps) {
           }
         />
         {Boolean(formState.fields.name.error) ? (
-          <p id="name-error">{formState.fields.name.error}</p>
+          <p id="name-error" className="field-error">
+            {formState.fields.name.error}
+          </p>
         ) : null}
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit">Add name</button>
 
       {Boolean(formState.message) ? (
-        <p role="status" aria-live="polite">
+        <p role="status" aria-live="polite" className="form-status">
           {formState.message}
         </p>
       ) : null}

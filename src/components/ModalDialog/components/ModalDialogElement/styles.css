@@ -1,0 +1,11 @@
+@scope (.modal-dialog) to (.modal-content) {
+  :scope {
+    padding: var(--spacing-medium);
+  }
+
+  button {
+    display: block;
+    margin-block-end: var(--spacing-small);
+    justify-self: end; /* https://github.com/maurer2/trickle-down-features */
+  }
+}

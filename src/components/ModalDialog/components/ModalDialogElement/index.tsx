@@ -4,6 +4,7 @@ import { type ReactElement, type ComponentPropsWithRef } from "react";
 
 import { useModalDialogContext } from "../ModalDialogProvider";
 import { ModalDialogAdapter } from "../ModalDialogAdapter";
+import "./styles.css";
 
 type ModalDialogAdapterProps = ComponentPropsWithRef<typeof ModalDialogAdapter>;
 
@@ -31,17 +32,18 @@ export function ModalDialogElement<T extends ModalDialogAdapterProps>({
   };
 
   return (
-    <dialog id={modalId} closedby="any" open={false}>
+    <dialog id={modalId} closedby="any" open={false} className="modal-dialog">
       <button
         type="button"
         // @ts-expect-error too-new
         commandfor={modalId}
         command="close"
         className="close-button"
+        aria-label="Close modal"
       >
-        Close
+        X
       </button>
-      <div className="content">
+      <div className="modal-content">
         <ModalDialogAdapter onSubmit={handleClose} onCancel={handleShow}>
           {children}
         </ModalDialogAdapter>

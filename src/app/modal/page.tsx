@@ -31,7 +31,7 @@ export default function ModalPage() {
             <ModalDialog.Trigger>
               <button
                 type="button"
-                aria-haspopup="dialog"
+                aria-haspopup={modalId}
                 // @ts-expect-error too-new
                 commandfor={modalId}
                 command="show-modal"
