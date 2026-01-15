@@ -1,39 +1,71 @@
-:root {
-  --primary-colour: oklch(0.22 0.01 0);
-  --secondary-colour: oklch(0.9 0.01 106.43);
-  --tertiary-colour: oklch(0.8054 0.1677 64.59);
+@layer base, components, utilities;
 
-  --spacing-small: 0.75rem;
-  --spacing-medium: 1.5rem;
-  --spacing-large: 3rem;
+@layer base {
+  :root {
+    --primary-colour: oklch(0.22 0.01 0);
+    --secondary-colour: oklch(0.9 0.01 106.43);
+    --tertiary-colour: oklch(0.8054 0.1677 64.59);
 
-  --transition-duration: 0.5s;
-  @media (prefers-reduced-motion: reduce) {
-    --transition-duration: 0s;
+    --spacing-small: 0.75rem;
+    --spacing-medium: 1.5rem;
+    --spacing-large: 3rem;
+
+    --transition-duration: 0.5s;
+    @media (prefers-reduced-motion: reduce) {
+      --transition-duration: 0s;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    color: var(--secondary-colour);
+    background: var(--primary-colour);
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    container-name: body;
+    container-type: inline-size;
+  }
+
+  main {
+    display: flow-root; /*  contain child margins */
+    inline-size: min(100ch, 100%);
+    margin-inline: auto;
+    padding-inline: var(--spacing-medium);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
-body {
-  min-height: 100dvh;
-  color: var(--secondary-colour);
-  background: var(--primary-colour);
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer components {
+  .invoker-details {
+    display: grid;
+    margin-block-start: 0;
+    margin-block-end: var(--spacing-medium);
+    grid-template-columns: max-content 1fr;
+    gap: var(--spacing-small);
+  }
 
-  container-name: body;
-  container-type: inline-size;
+  dt {
+    font-weight: bold;
+
+    &:after {
+      content: ": ";
+    }
+  }
+
+  dd {
+    margin: 0;
+  }
 }
 
-main {
-  display: flow-root; /*  contain child margins */
-  inline-size: min(100ch, 100%);
-  margin-inline: auto;
-  padding-inline: var(--spacing-medium);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+@layer utility {
+  .strike-through {
+    text-decoration: line-through;
+  }
 }

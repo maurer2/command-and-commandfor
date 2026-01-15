@@ -10,7 +10,22 @@ export default function ModalPage() {
     <main className="modal-page">
       <h2>Modal</h2>
 
-      <div className="example">
+      <section>
+        <h3 id="invoker-details">Invoker details</h3>
+        <dl className="invoker-details" aria-labelledby="invoker-details">
+          <dt>command</dt>
+          <dd>"show-modal"</dd>
+          <dt>commandfor</dt>
+          <dd>"{modalId}"</dd>
+          <dt>
+            <span className="strike-through">interestfor</span>
+          </dt>
+          <dd>-</dd>
+        </dl>
+      </section>
+
+      <section className="example">
+        <h3>Example</h3>
         <ModalDialogNextHelper>
           <ModalDialog.Root modalId={modalId}>
             <ModalDialog.Trigger>
@@ -29,7 +44,7 @@ export default function ModalPage() {
             </ModalDialog.Element>
           </ModalDialog.Root>
         </ModalDialogNextHelper>
-      </div>
+      </section>
     </main>
   );
 }
