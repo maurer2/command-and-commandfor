@@ -5,8 +5,26 @@
     display: flex; /*  contain child margins */
     margin-inline: calc(-1 * var(--spacing-medium));
     flex-direction: column;
+    gap: 1px;
     border-block: 1px solid var(--border-colour);
     overflow: clip;
+
+    /* https://developer.chrome.com/blog/gap-decorations-stable */
+    row-rule-width: 1px;
+    row-rule-style: solid;
+    row-rule-color: var(--border-colour);
+    row-rule-inset: 0;
+    row-rule-visibility-items: all;
+
+    @container body (width > 36rem) {
+      row-rule: none;
+
+      column-rule-width: 1px;
+      column-rule-style: solid;
+      column-rule-color: var(--border-colour);
+      column-rule-inset: 0;
+      column-rule-visibility-items: all;
+    }
 
     @container body (width > 36rem) {
       padding-inline: var(--spacing-medium);
@@ -29,9 +47,10 @@
       border-block-start: 1px solid var(--border-colour);
     } */
 
-    & + .link {
+    /* mobile */
+    /* & + .link {
       border-block-start: 1px solid var(--border-colour);
-    }
+    } */
 
     @container body (width > 36rem) {
       padding-inline: var(--spacing-large);
@@ -39,12 +58,17 @@
       text-align: center;
       transition: block-size ease var(--transition-duration);
 
-      & {
+      /* & {
         border-inline-start: 1px solid var(--border-colour);
-      }
 
-      & + .link {
-        border-block-start: none;
+        & + .link {
+          border-block-start: none;
+        }
+      } */
+
+      /* a link that is not preceeded by another link */
+      &:not(.link ~ &) {
+        border-inline-start: 1px solid var(--border-colour);
       }
 
       /* a link that is not followed by another link */
@@ -52,9 +76,10 @@
         border-inline-end: 1px solid var(--border-colour);
       }
 
+      /* hovered/focused element and all its siblings at the same time */
       :scope:has(&:hover, &:focus-visible) & {
         block-size: auto;
-        block-size: calc-size(fit-content, size * 1.5);
+        block-size: calc-size(fit-content, size * 1.25);
       }
     }
 
