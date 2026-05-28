@@ -6,8 +6,9 @@
     margin-inline: calc(-1 * var(--spacing-medium));
     flex-direction: column;
     border-block: 1px solid var(--border-colour);
+    overflow: clip;
 
-    @container body (width > 24rem) {
+    @container body (width > 36rem) {
       padding-inline: var(--spacing-medium);
       flex-direction: row;
       justify-content: center;
@@ -15,8 +16,10 @@
   }
 
   .link {
-    block-size: calc-size(fit-content, size * 2);
-    padding-inline: var(--spacing-medium);
+    padding-block: var(--spacing-small);
+    padding-inline: var(--spacing-small);
+    block-size: auto;
+    block-size: calc-size(fit-content, size * 1);
     flex: none;
     align-content: center;
     overflow-wrap: break-word;
@@ -30,8 +33,8 @@
       border-block-start: 1px solid var(--border-colour);
     }
 
-    @container body (width > 24rem) {
-      inline-size: calc-size(fit-content, size * 2);
+    @container body (width > 36rem) {
+      padding-inline: var(--spacing-large);
       flex-shrink: 1;
       text-align: center;
       transition: block-size ease var(--transition-duration);
@@ -50,7 +53,8 @@
       }
 
       :scope:has(&:hover, &:focus-visible) & {
-        block-size: calc-size(fit-content, size * 3);
+        block-size: auto;
+        block-size: calc-size(fit-content, size * 1.5);
       }
     }
 
