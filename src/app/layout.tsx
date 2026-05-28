@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "modern-normalize";
 
 import "./globals.css";
-import Masthead from "@/components/MastHead";
+import Masthead from "@/components/Masthead";
 import Bouncer from "@/components/Bouncer";
 
 const geistSans = Geist({
