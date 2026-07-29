@@ -29,8 +29,8 @@ export default function PopoverPage() {
           // @ts-expect-error too-new
           commandfor={popoverId}
           command="toggle-popover"
-          aria-label="Toggle popover menu"
-          aria-haspopup={popoverId}
+          aria-label="Menu" // https://jakearchibald.com/2026/my-tooltip-a11y-mistake/
+          // aria-haspopup would be incorrect here: https://github.com/whatwg/html/issues/9153
         >
           <Menu />
         </button>
