@@ -13,6 +13,7 @@ const routes: { path: Route; label: string }[] = [
   { path: "/popover", label: "Popover" },
   { path: "/modal", label: "Modal" },
   { path: "/hover", label: "Hover" },
+  // { path: "/hover2", label: "Hover2" }, // typed path check
 ];
 
 // https://github.com/maurer2/trickle-down-features/blob/main/src/components/GoBackLink/GoBackLink.svelte
